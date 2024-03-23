@@ -31,6 +31,10 @@ base URL: https://2K-Dent.ims.cz/
     - create views for User
     - create urls for User
 
+- connect with client-side (Angular)
+    - install django cors header
+        pip install django-cors-headers
+
 
 
 
