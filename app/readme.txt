@@ -35,6 +35,10 @@ base URL: https://2K-Dent.ims.cz/
     - install django cors header
         pip install django-cors-headers
 
+- create Table model for sklady header
+    - create Table model (Python class that represents a database table)
+    - create Table serializer to convert complex data types (querysets, models,..) into native Python datatypes to be rendered into JSON, XML,.. for HTTP responses
+    - create view for Table to render templates
 
 
 
