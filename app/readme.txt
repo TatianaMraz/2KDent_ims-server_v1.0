@@ -55,6 +55,13 @@ base URL: https://2K-Dent.ims.cz/
     - create view for Product to render templates
     - add to urls
     - make migrations
+    - add image to Product model
+        - create form
+        - create function in views to upload product image
+        - install Pillow to provide support for manipulating file formats
+            pip install pillow
+        - add MEDIA roots to settings
+        - add static() to urls to serve media files during development by mapping MEDIA_URL to the MEDIA_ROOT directory
 
 
 
