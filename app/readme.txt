@@ -39,12 +39,21 @@ base URL: https://2K-Dent.ims.cz/
     - create Table model (Python class that represents a database table)
     - create Table serializer to convert complex data types (querysets, models,..) into native Python datatypes to be rendered into JSON, XML,.. for HTTP responses
     - create view for Table to render templates
+    - add to urls
     - make migrations
 
 - create TableHead model for sklady subheader
     - create TableHead model (Python class that represents a database table)
     - create TableHead serializer to convert complex data types (querysets, models,..) into native Python datatypes to be rendered into JSON, XML,.. for HTTP responses
     - create view for TableHead to render templates
+    - add to urls
+    - make migrations
+
+- create Product model for sklady subheader
+    - create Product model (Python class that represents a database table)
+    - create Product serializer to convert complex data types (querysets, models,..) into native Python datatypes to be rendered into JSON, XML,.. for HTTP responses
+    - create view for Product to render templates
+    - add to urls
     - make migrations
 
 
