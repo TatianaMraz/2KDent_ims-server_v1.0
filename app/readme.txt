@@ -79,9 +79,10 @@ base URL: https://2K-Dent.ims.cz/
     - install heroku-config plugin to simplify the management of environment variables for Heroku apps through the Heroku CLI
         heroku plugins:install heroku-config
         - push all uncommitted changes to git
-
+        - set up a Git remote named "heroku" for the Heroku app to enable deploying code directly to the Heroku app
+            heroku git:remote -a ims-2kdent
         - push local env variables to Heroku app, ensuring consistency between development env and the deployed app
-        heroku config:push
+            heroku config:push
 
 
 
