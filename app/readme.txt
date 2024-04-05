@@ -90,7 +90,7 @@ base URL: https://2K-Dent.ims.cz/
             heroku config:set DEBUG=True
             - check heroku config
                 heroku config
-
+    - once the app is successfully uploaded to Heroku add the domain to ALLOWED_HOSTS in settings.py
 
 
 
