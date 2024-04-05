@@ -63,7 +63,25 @@ base URL: https://2K-Dent.ims.cz/
         - add MEDIA roots to settings
         - add static() to urls to serve media files during development by mapping MEDIA_URL to the MEDIA_ROOT directory
 
+- deploy to HEROKU
+    - install python decouple to organize app settings so that can change the parameters without having to redeploy the app
+        pip install python-decouple
+    - create .env and store SECRET_KEY
+    - instal dj-database-url to configure database settings from environment variables or URLs
+        pip install dj-database-url
+    - install dj-static to serve app with static files when deployed to production server
+        pip install dj-static
+    - freeze app requirements
+        pip freeze > requirements-dev.txt
+    - create requirements.txt
+    - create Procfile specific for HEROKU
+    - create runtime.txt
+    - install heroku-config plugin to simplify the management of environment variables for Heroku apps through the Heroku CLI
+        heroku plugins:install heroku-config
+        - push all uncommitted changes to git
 
+        - push local env variables to Heroku app, ensuring consistency between development env and the deployed app
+        heroku config:push
 
 
 

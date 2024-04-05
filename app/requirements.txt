@@ -1,0 +1,3 @@
+-r reguirements-dev.txt
+gunicorn
+psycopg2
