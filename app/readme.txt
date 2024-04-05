@@ -83,6 +83,14 @@ base URL: https://2K-Dent.ims.cz/
             heroku git:remote -a ims-2kdent
         - push local env variables to Heroku app, ensuring consistency between development env and the deployed app
             heroku config:push
+        - continue following the Deploy section in Heroku page
+            * if error with SECRET_KEY:
+            heroku config:set SECRET_KEY='app secret key'
+            * if error with DEBUG:
+            heroku config:set DEBUG=True
+            - check heroku config
+                heroku config
+
 
 
 
