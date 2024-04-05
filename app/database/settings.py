@@ -29,7 +29,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['ims-2kdent-d48065238ade.herokuapp.com/']
+ALLOWED_HOSTS = ['ims-2kdent-d48065238ade.herokuapp.com']
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
