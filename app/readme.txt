@@ -91,6 +91,14 @@ base URL: https://2K-Dent.ims.cz/
             - check heroku config
                 heroku config
     - once the app is successfully uploaded to Heroku add the domain to ALLOWED_HOSTS in settings.py
+    - once the app is successfully uploaded to platform for hosting client-side add the hosting url to CORS_ALLOWED_ORIGINS
+        - deploy the changes to Heroku
+            * using Heroku git:
+            git add .
+            git commit -m""
+            git push heroku master
 
+TO DO:
+- create account for client demo version
 
 
