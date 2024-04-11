@@ -24,7 +24,7 @@ class TableHead(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     quantity = models.IntegerField(validators=[MinValueValidator(0)])
-    minimum_quantity = models.IntegerField(validators=[MinValueValidator(0)])
+    min_quantity = models.IntegerField(validators=[MinValueValidator(0)])
     expiration_date = models.DateField(null=True, blank=True)
     supplier = models.CharField(max_length=255)
     status_choices = [
