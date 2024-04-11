@@ -24,12 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
-
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-b!%ga3a9u1g)t%r-w)e=#5yn_7ft(4-3gz*g=ld5sb=!_e4a87'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+# DEBUG = config('DEBUG')
+DEBUG = True
 
-ALLOWED_HOSTS = ['ims-2kdent-d48065238ade.herokuapp.com']
+# ALLOWED_HOSTS = ['ims-2kdent-d48065238ade.herokuapp.com']
+ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
