@@ -22,7 +22,7 @@ class TableHead(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     quantity = models.IntegerField(validators=[MinValueValidator(0)])
     min_quantity = models.IntegerField(validators=[MinValueValidator(0)])
     expiration_date = models.DateField(null=True, blank=True)
