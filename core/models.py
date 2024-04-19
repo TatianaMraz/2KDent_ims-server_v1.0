@@ -27,12 +27,6 @@ class Product(models.Model):
     min_quantity = models.IntegerField(validators=[MinValueValidator(0)])
     expiration_date = models.DateField(null=True, blank=True)
     supplier = models.CharField(max_length=255)
-    status_choices = [
-        ('red', 'Red'),
-        ('orange', 'Orange'),
-        ('green', 'Green'),
-    ]
-    status = models.CharField(max_length=20, choices=status_choices, default='green')
     product_type_choices = [
         ('Materiál', 'Materiál'),
         ('Nástroj', 'Nástroj'),
@@ -48,3 +42,21 @@ class Product(models.Model):
         if self.expiration_date and self.expiration_date < timezone.now().date():
             raise ValidationError({'expiration_date': ['Datum expirace nemůže být v minulosti.']})
         super().save(*args, **kwargs)
+
+
+class Order(models.Model):
+    name = models.CharField(max_length=100, default='Název položky')
+    supplier = models.CharField(max_length=255)
+    order_no = models.CharField(max_length=100, default='Číslo objednávky')
+    quantity = models.IntegerField(validators=[MinValueValidator(0)])
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    delivery_date = models.DateField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.delivery_date and self.delivery_date < timezone.now().date():
+            raise ValidationError({'delivery_date': ['Datum dodání nemůže být v minulosti.']})
+        super().save(*args, **kwargs)
+
+
+

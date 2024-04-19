@@ -26,3 +26,16 @@ class ProductSerializer(serializers.ModelSerializer):
                 }
             }
         }
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
+        extra_kwargs = {
+            'delivery_date': {
+                'error_messages': {
+                    'invalid': 'Zvolte datum ve formátu DD.MM.RRRR.'
+                }
+            }
+        }

@@ -2,8 +2,8 @@ from django.http import JsonResponse
 from rest_framework import viewsets, generics
 
 from core.forms import ProductForm
-from core.models import Table, TableHead, Product
-from core.serializers import TableSerializer, TableHeadSerializer, ProductSerializer
+from core.models import Table, TableHead, Product, Order
+from core.serializers import TableSerializer, TableHeadSerializer, ProductSerializer, OrderSerializer
 
 
 class TableViewSet(viewsets.ModelViewSet):
@@ -48,3 +48,13 @@ def product_image_view(request):
             form = ProductForm()
             return JsonResponse({'errors': form.errors}, status=400)
     return JsonResponse({'message': 'Method not allowed'}, status=405)
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
+class OrderUpdateAPIView(generics.UpdateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

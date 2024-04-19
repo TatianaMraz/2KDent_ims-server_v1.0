@@ -63,6 +63,13 @@ base URL: https://2K-Dent.ims.cz/
         - add MEDIA roots to settings
         - add static() to urls to serve media files during development by mapping MEDIA_URL to the MEDIA_ROOT directory
 
+- create Order model
+    - create Order model (Python class that represents a database table)
+    - create Order serializer to convert complex data types (querysets, models,..) into native Python datatypes to be rendered into JSON, XML,.. for HTTP responses
+    - create view for Order to render templates
+    - add to urls
+    - make migrations
+
 - deploy to HEROKU
     - install python decouple to organize app settings so that can change the parameters without having to redeploy the app
         pip install python-decouple
