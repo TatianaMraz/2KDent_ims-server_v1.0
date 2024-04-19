@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Table, TableHead, Product
+from .models import Table, TableHead, Product, Order
 
 
 class TableSerializer(serializers.ModelSerializer):
@@ -30,7 +30,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Product
+        model = Order
         fields = '__all__'
         extra_kwargs = {
             'delivery_date': {
