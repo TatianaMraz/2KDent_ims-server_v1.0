@@ -45,12 +45,13 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    name = models.CharField(max_length=100, default='Název položky')
+    name = models.CharField(max_length=100)
     supplier = models.CharField(max_length=255)
-    order_no = models.CharField(max_length=100, default='Číslo objednávky')
+    order_no = models.CharField(max_length=100)
     quantity = models.IntegerField(validators=[MinValueValidator(0)])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    order_date = models.DateField(null=True, blank=True)
     delivery_date = models.DateField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
