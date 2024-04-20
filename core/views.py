@@ -23,10 +23,8 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 class ProductChoicesViewSet(viewsets.ViewSet):
     def list(self, request):
-        status_choices = dict(Product.status_choices)
         product_type_choices = dict(Product.product_type_choices)
         choices = {
-            'status_choices': status_choices,
             'product_type_choices': product_type_choices
         }
         return JsonResponse(choices)
