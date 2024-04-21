@@ -33,6 +33,11 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = '__all__'
         extra_kwargs = {
+            'order_date': {
+                'error_messages': {
+                    'invalid': 'Zvolte datum ve formátu DD.MM.RRRR.'
+                }
+            },
             'delivery_date': {
                 'error_messages': {
                     'invalid': 'Zvolte datum ve formátu DD.MM.RRRR.'
