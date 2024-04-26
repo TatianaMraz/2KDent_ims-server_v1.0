@@ -33,7 +33,7 @@ class Product(models.Model):
         ('Zařízení', 'Zařízení'),
     ]
     product_type = models.CharField(max_length=20, choices=product_type_choices, default='Materiál')
-    stock_number = models.CharField(max_length=100, default='Číslo skladu')
+    stock_number = models.CharField(max_length=100, default='Centrální sklad')
     image = models.ImageField(upload_to='product_files/', null=True, blank=True)
     note = models.TextField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
