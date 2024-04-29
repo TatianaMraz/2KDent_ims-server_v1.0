@@ -2,8 +2,9 @@ from django.http import JsonResponse
 from rest_framework import viewsets, generics
 
 from core.forms import ProductForm
-from core.models import Table, TableHead, Product, Order
-from core.serializers import TableSerializer, TableHeadSerializer, ProductSerializer, OrderSerializer
+from core.models import Table, TableHead, Product, Order, OrderItem
+from core.serializers import TableSerializer, TableHeadSerializer, ProductSerializer, OrderSerializer, \
+    OrderItemSerializer
 
 
 class TableViewSet(viewsets.ModelViewSet):
@@ -56,3 +57,13 @@ class OrderViewSet(viewsets.ModelViewSet):
 class OrderUpdateAPIView(generics.UpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+
+class OrderItemListCreate(generics.ListCreateAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+
+class OrderItemRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer

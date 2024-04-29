@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Table, TableHead, Product, Order
+from .models import Table, TableHead, Product, Order, OrderItem
 
 
 class TableSerializer(serializers.ModelSerializer):
@@ -44,3 +44,9 @@ class OrderSerializer(serializers.ModelSerializer):
                 }
             }
         }
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = '__all__'
