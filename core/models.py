@@ -16,6 +16,7 @@ class TableHead(models.Model):
     expiration_date = models.CharField(max_length=100, default='Expirace')
     order_date = models.CharField(max_length=100, default='Datum objednání')
     delivery_date = models.CharField(max_length=100, default='Datum dodání')
+    is_delivered = models.CharField(max_length=100, default='Dodáno')
     order_number = models.CharField(max_length=100, default='Číslo obj.')
     stock_number = models.CharField(max_length=100, default='Číslo skladu')
     note = models.CharField(max_length=100, default='Poznámka')
@@ -54,6 +55,7 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     order_date = models.DateField(null=True, blank=True)
     delivery_date = models.DateField(null=True, blank=True)
+    is_delivered = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.delivery_date and self.delivery_date < timezone.now().date():
