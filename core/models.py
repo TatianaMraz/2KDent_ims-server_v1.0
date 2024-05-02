@@ -47,7 +47,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    order_number = models.CharField(max_length=100)
+    order_number = models.CharField(max_length=100, unique=True)
     supplier = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
