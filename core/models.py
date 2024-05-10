@@ -55,6 +55,10 @@ class Order(models.Model):
     delivery_date = models.DateField(null=True, blank=True)
     is_delivered = models.BooleanField(default=False)
 
+    def items(self):
+        items = OrderItem.objects.filter(order=self)
+        return len(items)
+
     def save(self, *args, **kwargs):
         if self.delivery_date and self.delivery_date < timezone.now().date():
             raise ValidationError({'delivery_date': ['Datum dodání nemůže být v minulosti.']})

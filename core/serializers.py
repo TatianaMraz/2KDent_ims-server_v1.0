@@ -31,7 +31,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = ('id', 'order_number', 'supplier', 'created_at', 'updated_at', 'order_date', 'delivery_date', 'is_delivered', 'items')
         extra_kwargs = {
             'order_date': {
                 'error_messages': {
