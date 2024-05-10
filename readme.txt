@@ -108,5 +108,7 @@ base URL: https://2K-Dent.ims.cz/
 TO DO:
 - create order item model to be able to store multiple items in one order
     - create OrderItem model and connect with Order model
+    - create function to add order item to order
+    - add created order item to order model
 
 

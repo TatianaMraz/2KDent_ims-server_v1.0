@@ -1,5 +1,6 @@
 from django.http import JsonResponse
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
+from rest_framework.decorators import action
 
 from core.forms import ProductForm
 from core.models import Table, TableHead, Product, Order, OrderItem
@@ -52,6 +53,30 @@ def product_image_view(request):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+    @action(detail=True, methods=['POST'])
+    def add_item(self, request, pk=None):
+        if 'name' in request.data and 'quantity' in request.data:
+            order = Order.objects.get(id=pk)
+            name = request.data['name']
+            quantity = request.data['quantity']
+
+            try:
+                item = OrderItem.objects.get(order=order, name=name)
+                item.name = name
+                item.quantity = quantity
+                item.save()
+                serializer = OrderItemSerializer(item)
+                response = {'message': 'item updated', 'result': serializer.data}
+                return JsonResponse(response, status=status.HTTP_200_OK)
+            except:
+                item = OrderItem.objects.create(order=order, name=name, quantity=quantity)
+                serializer = OrderItemSerializer(item)
+                response = {'message': 'item created', 'result': serializer.data}
+                return JsonResponse(response, status=status.HTTP_200_OK)
+        else:
+            response = {'message': 'provide order items'}
+            return JsonResponse(response, status=status.HTTP_400_BAD_REQUEST)
 
 
 class OrderUpdateAPIView(generics.UpdateAPIView):
