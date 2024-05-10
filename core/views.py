@@ -59,11 +59,8 @@ class OrderUpdateAPIView(generics.UpdateAPIView):
     serializer_class = OrderSerializer
 
 
-class OrderItemListCreate(generics.ListCreateAPIView):
+class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
 
 
-class OrderItemRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
-    queryset = OrderItem.objects.all()
-    serializer_class = OrderItemSerializer
