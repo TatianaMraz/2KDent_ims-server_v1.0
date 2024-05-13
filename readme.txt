@@ -106,7 +106,5 @@ base URL: https://2K-Dent.ims.cz/
             git push heroku master
 
 TO DO:
-- create order item model to be able to store multiple items in one order
-    - add created order item to order model
-
+- in models.py def item return not length but the name and quantity of the item
 
