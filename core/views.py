@@ -57,25 +57,19 @@ class OrderViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['POST'])
     def add_item(self, request, pk=None):
         if 'name' in request.data and 'quantity' in request.data:
-            order = Order.objects.get(id=pk)
+            order = self.get_object()
             name = request.data['name']
             quantity = request.data['quantity']
 
-            try:
-                item = OrderItem.objects.get(order=order, name=name)
-                item.name = name
-                item.quantity = quantity
-                item.save()
-                serializer = OrderItemSerializer(item)
-                response = {'message': 'item updated', 'result': serializer.data}
-                return JsonResponse(response, status=status.HTTP_200_OK)
-            except:
-                item = OrderItem.objects.create(order=order, name=name, quantity=quantity)
-                serializer = OrderItemSerializer(item)
-                response = {'message': 'item created', 'result': serializer.data}
-                return JsonResponse(response, status=status.HTTP_200_OK)
+            item, created = OrderItem.objects.update_or_create(order=order, name=name, quantity=quantity)
+            serializer = OrderItemSerializer(item)
+            response = {
+                'message': 'položka upravena' if not created else 'položka upravena',
+                'result': serializer.data
+            }
+            return JsonResponse(response, status=status.HTTP_200_OK)
         else:
-            response = {'message': 'provide order items'}
+            response = {'message': 'zadejte položku objednávky'}
             return JsonResponse(response, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -87,5 +81,6 @@ class OrderUpdateAPIView(generics.UpdateAPIView):
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
+
 
 

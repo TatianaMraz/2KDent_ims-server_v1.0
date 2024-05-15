@@ -57,7 +57,7 @@ class Order(models.Model):
 
     def items(self):
         items = OrderItem.objects.filter(order=self)
-        return [(item.name, item.quantity) for item in items]
+        return [{'name': item.name, 'quantity': item.quantity} for item in items]
 
     def save(self, *args, **kwargs):
         if self.delivery_date and self.delivery_date < timezone.now().date():
@@ -72,5 +72,6 @@ class OrderItem(models.Model):
 
     class Meta:
         index_together = (('order',),)
+
 
 
