@@ -24,8 +24,8 @@ class TableHead(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    quantity = models.IntegerField(validators=[MinValueValidator(0)])
-    min_quantity = models.IntegerField(validators=[MinValueValidator(0)])
+    quantity = models.PositiveIntegerField(default=1)
+    min_quantity = models.PositiveIntegerField(default=1)
     expiration_date = models.DateField(null=True, blank=True)
     supplier = models.CharField(max_length=255)
     product_type_choices = [
@@ -68,7 +68,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=False, null=False, default='Název položky')
-    quantity = models.IntegerField(validators=[MinValueValidator(0)], blank=False, null=False)
+    quantity = models.PositiveIntegerField(default=1)
 
     class Meta:
         index_together = (('order',),)
