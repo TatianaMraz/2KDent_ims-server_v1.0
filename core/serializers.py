@@ -31,15 +31,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
-        fields = ['id', 'name', 'quantity']
-
-
-class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True)
-
-    class Meta:
-        model = Order
-        fields = ('id', 'order_number', 'supplier', 'created_at', 'updated_at', 'order_date', 'delivery_date', 'is_delivered', 'items')
+        fields = ['id', 'name', 'quantity', 'unit', 'delivery_date']
         extra_kwargs = {
             'order_date': {
                 'error_messages': {
@@ -51,6 +43,21 @@ class OrderSerializer(serializers.ModelSerializer):
                     'invalid': 'Zvolte datum ve formátu DD.MM.RRRR.'
                 }
             }
+        }
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True)
+
+    class Meta:
+        model = Order
+        fields = ('id', 'order_number', 'supplier', 'created_at', 'updated_at', 'order_date', 'is_delivered', 'items')
+        extra_kwargs = {
+            'order_date': {
+                'error_messages': {
+                    'invalid': 'Zvolte datum ve formátu DD.MM.RRRR.'
+                }
+            },
         }
 
     def validate(self, data):
@@ -93,7 +100,3 @@ class OrderSerializer(serializers.ModelSerializer):
                 OrderItem.objects.create(order=instance, **item_data)
 
         return instance
-
-
-
-
