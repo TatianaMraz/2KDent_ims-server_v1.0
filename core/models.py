@@ -67,8 +67,8 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, blank=False, null=False, default='Název položky')
-    quantity = models.PositiveIntegerField(default=1)
+    name = models.CharField(max_length=100, blank=False, null=False)
+    quantity = models.PositiveIntegerField()
 
     class Meta:
         index_together = (('order',),)
