@@ -25,7 +25,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 class ProductChoicesViewSet(viewsets.ViewSet):
     def list(self, request):
-        product_type_choices = dict(Product.product_type_choices)
+        product_type_choices = dict(Product.PRODUCT_TYPE_CHOICES)
         choices = {
             'product_type_choices': product_type_choices
         }
@@ -73,6 +73,15 @@ class OrderViewSet(viewsets.ModelViewSet):
             return JsonResponse(response, status=status.HTTP_400_BAD_REQUEST)
 
 
+class OrderUnitChoicesViewSet(viewsets.ViewSet):
+    def list(self, request):
+        order_unit_choices = dict(OrderItem.UNIT_CHOICES)
+        choices = {
+            'order_unit_choices': order_unit_choices
+        }
+        return JsonResponse(choices)
+
+
 class OrderUpdateAPIView(generics.UpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -81,6 +90,8 @@ class OrderUpdateAPIView(generics.UpdateAPIView):
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
+
+
 
 
 
