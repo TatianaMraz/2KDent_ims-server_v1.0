@@ -23,7 +23,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 class ProductChoicesViewSet(viewsets.ViewSet):
     def list(self, request):
-        product_type_choices = dict(Product.product_type_choices)
+        product_type_choices = dict(Product.PRODUCT_TYPE_CHOICES)
         choices = {
             'product_type_choices': product_type_choices
         }

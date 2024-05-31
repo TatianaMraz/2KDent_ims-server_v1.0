@@ -24,16 +24,16 @@ class TableHead(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    quantity = models.IntegerField(validators=[MinValueValidator(0)])
-    min_quantity = models.IntegerField(validators=[MinValueValidator(0)])
+    quantity = models.PositiveIntegerField(default=1)
+    min_quantity = models.PositiveIntegerField(default=1)
     expiration_date = models.DateField(null=True, blank=True)
     supplier = models.CharField(max_length=255)
-    product_type_choices = [
+    PRODUCT_TYPE_CHOICES = [
         ('Materiál', 'Materiál'),
         ('Nástroj', 'Nástroj'),
         ('Zařízení', 'Zařízení'),
     ]
-    product_type = models.CharField(max_length=20, choices=product_type_choices, default='Materiál')
+    product_type = models.CharField(max_length=20, choices=PRODUCT_TYPE_CHOICES, default='Materiál')
     stock_number = models.CharField(max_length=100, default='Centrální sklad')
     image = models.ImageField(upload_to='product_files/', null=True, blank=True)
     note = models.TextField(max_length=255, null=True, blank=True)
