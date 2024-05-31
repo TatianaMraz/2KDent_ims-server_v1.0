@@ -20,6 +20,9 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
 
 class ProductChoicesViewSet(viewsets.ViewSet):
     def list(self, request):
