@@ -1,5 +1,7 @@
 from django.http import JsonResponse
 from rest_framework import viewsets, generics
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from core.forms import ProductForm
 from core.models import Table, TableHead, Product, Order
@@ -19,6 +21,8 @@ class TableHeadViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)

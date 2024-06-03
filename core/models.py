@@ -1,11 +1,8 @@
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils import timezone
 from rest_framework.exceptions import ValidationError
-
-
-User = get_user_model()
 
 
 class Table(models.Model):
@@ -43,7 +40,7 @@ class Product(models.Model):
     note = models.TextField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='created_by', null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if self.expiration_date and self.expiration_date < timezone.now().date():

@@ -108,7 +108,7 @@ base URL: https://2K-Dent.ims.cz/
 TO DO:
 - to product model add created_by
     - ~~migrate created_by to existing products~~
-    - create serializer for created_by to be able create new product from client-side
+    - ~~create serializer for created_by to be able create new product from client-side~~
 - to product model add updated_by
 
 - create Supplier model

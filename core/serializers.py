@@ -16,7 +16,7 @@ class TableHeadSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    created_by = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     class Meta:
         model = Product
         fields = '__all__'
