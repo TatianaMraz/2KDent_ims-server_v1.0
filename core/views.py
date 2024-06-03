@@ -1,6 +1,6 @@
 from django.http import JsonResponse
+from knox.auth import TokenAuthentication
 from rest_framework import viewsets, generics
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from core.forms import ProductForm
@@ -21,7 +21,7 @@ class TableHeadViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
