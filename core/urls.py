@@ -17,5 +17,5 @@ urlpatterns = [
     path('products/<int:pk>/', ProductUpdateAPIView.as_view(), name='product-update'),
     path('product-choices/', ProductChoicesViewSet.as_view({'get': 'list'}), name='product-choices'),
     path('orders/<int:pk>/', OrderUpdateAPIView.as_view(), name='order-update'),
-    path('suppliers/<int:pk>/', SupplierUpdateAPIView.as_view(), name='order-update'),
+    path('suppliers/<int:pk>/', SupplierUpdateAPIView.as_view(), name='supplier-update'),
 ]
