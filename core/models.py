@@ -21,6 +21,12 @@ class TableHead(models.Model):
     order_number = models.CharField(max_length=100, default='Číslo obj.')
     stock_number = models.CharField(max_length=100, default='Číslo skladu')
     note = models.CharField(max_length=100, default='Poznámka')
+    company = models.CharField(max_length=100, default='Firma')
+    address = models.CharField(max_length=100, default='Adresa')
+    ico = models.CharField(max_length=100, default='IČO')
+    dic = models.CharField(max_length=100, default='DIČ')
+    bank_account = models.CharField(max_length=100, default='Bank. účet')
+    contact = models.CharField(max_length=100, default='Kontakt')
 
 
 class Product(models.Model):
