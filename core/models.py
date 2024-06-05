@@ -50,7 +50,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
     supplier = models.CharField(max_length=255)
     order_number = models.CharField(max_length=100)
     quantity = models.IntegerField(validators=[MinValueValidator(0)])
