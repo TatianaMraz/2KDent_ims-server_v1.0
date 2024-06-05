@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Table, TableHead, Product, Order
+from .models import Table, TableHead, Product, Order, Supplier
 
 
 class TableSerializer(serializers.ModelSerializer):
@@ -47,3 +47,12 @@ class OrderSerializer(serializers.ModelSerializer):
                 }
             }
         }
+
+
+class SupplierSerializer(serializers.ModelSerializer):
+    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    updated_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Supplier
+        fields = '__all__'

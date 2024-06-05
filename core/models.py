@@ -50,7 +50,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     supplier = models.CharField(max_length=255)
     order_number = models.CharField(max_length=100)
     quantity = models.IntegerField(validators=[MinValueValidator(0)])
@@ -66,4 +66,14 @@ class Order(models.Model):
         super().save(*args, **kwargs)
 
 
-
+class Supplier(models.Model):
+    company = models.CharField(max_length=100)
+    address = models.CharField(max_length=255)
+    ico = models.CharField(max_length=10)
+    dic = models.CharField(max_length=10)
+    bank_account = models.CharField(max_length=100)
+    contact = models.CharField(max_length=255)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='supplier_created_by', null=True, blank=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='supplier_updated_by', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

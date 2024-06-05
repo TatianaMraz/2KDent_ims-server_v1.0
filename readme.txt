@@ -70,6 +70,13 @@ base URL: https://2K-Dent.ims.cz/
     - add to urls
     - make migrations
 
+- create Supplier model
+    - create Supplier model (Python class that represents a database table)
+    - create Supplier serializer to convert complex data types (querysets, models,..) into native Python datatypes to be rendered into JSON, XML,.. for HTTP responses
+    - create view for Supplier to render templates
+    - add to urls
+    - make migrations
+
 - deploy to HEROKU
     - install python decouple to organize app settings so that can change the parameters without having to redeploy the app
         pip install python-decouple
@@ -106,12 +113,6 @@ base URL: https://2K-Dent.ims.cz/
             git push heroku master
 
 TO DO:
-- to product model add created_by
-    - ~~migrate created_by to existing products~~
-    - ~~create serializer for created_by to be able create new product from client-side~~
-- to product model add updated_by
-
-- create Supplier model
 
 
 
