@@ -73,7 +73,7 @@ class Order(models.Model):
 
 
 class Supplier(models.Model):
-    company = models.CharField(max_length=100)
+    company = models.CharField(max_length=100, unique=True)
     address = models.CharField(max_length=255)
     ico = models.CharField(max_length=10)
     dic = models.CharField(max_length=10, blank=True, null=True)
