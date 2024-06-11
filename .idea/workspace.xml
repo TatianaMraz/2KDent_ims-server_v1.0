@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea188a62-fd24-4f7a-8a71-06578fc6e57c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/management/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/management/commands/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/management/commands/import_suppliers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
