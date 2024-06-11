@@ -5,9 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea188a62-fd24-4f7a-8a71-06578fc6e57c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/management/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/management/commands/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/management/commands/import_suppliers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/management/commands/import_suppliers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/management/commands/import_suppliers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0002_tablehead.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0003_product.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0004_product_image_alter_product_product_type.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0005_rename_minimum_quantity_product_min_quantity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0006_alter_product_name.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0007_order_remove_product_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0008_order_order_date.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0009_alter_order_name_alter_order_order_date_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0010_rename_order_no_order_order_number.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0011_remove_tablehead_status_tablehead_note.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0012_product_stock_location.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0013_remove_product_stock_location_product_stock_number.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0014_alter_product_stock_number.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0015_order_is_delivered.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0016_tablehead_is_delivered.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0017_supplier_product_created_by_product_updated_by_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0018_delete_supplier_remove_product_created_by_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0019_remove_tablehead_created_by_product_created_by.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0020_auto_20240531_1120.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0021_alter_product_created_by.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0022_product_updated_by.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0023_supplier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0024_tablehead_address_tablehead_bank_account_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0025_rename_div_tablehead_dic.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0026_remove_supplier_contact_supplier_note_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0027_alter_supplier_company.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
