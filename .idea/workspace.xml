@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea188a62-fd24-4f7a-8a71-06578fc6e57c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/management/commands/import_tables.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/management/commands/import_products.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0002_models_created.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +37,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/np-group/Documents/01_code/2-K_Dent/ims_v1.0/2KDent_ims-server_v1.0/app/core/management/commands"
+    "last_opened_file_path": "/Users/np-group/Documents/01_code/2-K_Dent/ims_v1.0/2KDent_ims-server_v1.0/app/core/management/commands",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
