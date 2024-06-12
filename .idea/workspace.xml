@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="ea188a62-fd24-4f7a-8a71-06578fc6e57c" name="Changes" comment="" />
+=======
+    <list default="true" id="ea188a62-fd24-4f7a-8a71-06578fc6e57c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/core/management/commands/import_products.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
+>>>>>>> 14935713ba6c8431cb9d3223b4aa6b093c3f551f
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +32,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.admin.executor&quot;: &quot;Run&quot;,
@@ -34,6 +43,19 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/np-group/Documents/01_code/2-K_Dent/ims_v1.0/2KDent_ims-server_v1.0/app/core/management/commands&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.admin.executor": "Run",
+    "Python.manage.executor": "Run",
+    "Python.models.executor": "Run",
+    "Python.settings.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/np-group/Documents/01_code/2-K_Dent/ims_v1.0/2KDent_ims-server_v1.0/app/core/management/commands",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+>>>>>>> 14935713ba6c8431cb9d3223b4aa6b093c3f551f
   }
 }</component>
   <component name="RecentsManager">

@@ -237,4 +237,3 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS('Products imported successfully.'))
 
-
