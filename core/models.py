@@ -42,6 +42,19 @@ class Supplier(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+class Manufacturer(models.Model):
+    company = models.CharField(max_length=100, unique=True)
+    address = models.CharField(max_length=255)
+    ico = models.CharField(max_length=10)
+    dic = models.CharField(max_length=10, blank=True, null=True)
+    supplier = models.ForeignKey(Supplier, on_delete=models.PROTECT)
+    note = models.CharField(max_length=255, blank=True, null=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='manufacturer_created_by', null=True, blank=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='manufacturer_updated_by', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100, unique=True)
     quantity = models.PositiveIntegerField(default=1)

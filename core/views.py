@@ -4,9 +4,9 @@ from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from core.forms import ProductForm
-from core.models import Table, TableHead, Product, Order, Supplier
+from core.models import Table, TableHead, Product, Order, Supplier, Manufacturer
 from core.serializers import TableSerializer, TableHeadSerializer, ProductSerializer, OrderSerializer, \
-    SupplierSerializer
+    SupplierSerializer, ManufacturerSerializer
 
 
 class TableViewSet(viewsets.ModelViewSet):
@@ -85,3 +85,20 @@ class SupplierViewSet(viewsets.ModelViewSet):
 class SupplierUpdateAPIView(generics.UpdateAPIView):
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
+
+class ManufacturerViewSet(viewsets.ModelViewSet):
+    queryset = Manufacturer.objects.all()
+    serializer_class = ManufacturerSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+    def perform_update(self, serializer):
+        serializer.save(updated_by=self.request.user)
+
+
+class ManufacturerUpdateAPIView(generics.UpdateAPIView):
+    queryset = Manufacturer.objects.all()
+    serializer_class = ManufacturerSerializer
