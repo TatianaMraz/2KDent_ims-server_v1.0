@@ -1,7 +1,9 @@
+from django.db.models import ProtectedError
 from django.http import JsonResponse
 from knox.auth import TokenAuthentication
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
 
 from core.forms import ProductForm
 from core.models import Table, TableHead, Product, Order, Supplier, Manufacturer
@@ -80,6 +82,21 @@ class SupplierViewSet(viewsets.ModelViewSet):
 
     def perform_update(self, serializer):
         serializer.save(updated_by=self.request.user)
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+            self.perform_destroy(instance)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except ProtectedError:
+            return Response({
+                'error': "Supplier can't be deleted because it is referenced by existing products."
+            }, status=status.HTTP_400_BAD_REQUEST)
+        except Supplier.DoesNotExist:
+            return Response({'error': 'Supplier not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    def perform_destroy(self, instance):
+        instance.delete()
 
 
 class SupplierUpdateAPIView(generics.UpdateAPIView):
