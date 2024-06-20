@@ -45,8 +45,8 @@ class Supplier(models.Model):
 class Manufacturer(models.Model):
     company = models.CharField(max_length=100, unique=True)
     address = models.CharField(max_length=255)
-    ico = models.CharField(max_length=10)
-    dic = models.CharField(max_length=10, blank=True, null=True)
+    ico = models.CharField(max_length=20)
+    dic = models.CharField(max_length=50, blank=True, null=True)
     note = models.CharField(max_length=255, blank=True, null=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='manufacturer_created_by', null=True, blank=True)
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='manufacturer_updated_by', null=True, blank=True)
