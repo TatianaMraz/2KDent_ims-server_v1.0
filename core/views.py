@@ -90,13 +90,14 @@ class SupplierViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except ProtectedError:
             return Response({
-                'error': "Supplier can't be deleted because it is referenced by existing products."
+                'error': "Supplier can't be deleted because it is referenced by existing products.",
+                'code': 'protected_error'
             }, status=status.HTTP_400_BAD_REQUEST)
         except Supplier.DoesNotExist:
-            return Response({'error': 'Supplier not found'}, status=status.HTTP_404_NOT_FOUND)
-
-    def perform_destroy(self, instance):
-        instance.delete()
+            return Response({
+                'error': 'Supplier not found',
+                'code': 'not_found'
+            }, status=status.HTTP_404_NOT_FOUND)
 
 
 class SupplierUpdateAPIView(generics.UpdateAPIView):
