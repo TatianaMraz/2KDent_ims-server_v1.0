@@ -59,7 +59,6 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     min_quantity = models.PositiveIntegerField(default=1)
     expiration_date = models.DateField(null=True, blank=True)
-    supplier = models.ForeignKey(Supplier, on_delete=models.PROTECT)
     PRODUCT_TYPE_CHOICES = [
         ('Materiál', 'Materiál'),
         ('Nástroj', 'Nástroj'),
@@ -74,9 +73,25 @@ class Product(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='created_by', null=True, blank=True)
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='updated_by', null=True, blank=True)
 
+    def product_suppliers(self):
+        product_suppliers = ProductSupplier.objects.filter(product=self)
+        return [{'supplier': product_supplier.supplier, 'manufacturer': product_supplier.manufacturer} for product_supplier in product_suppliers]
+
     def save(self, *args, **kwargs):
         if self.expiration_date and self.expiration_date < timezone.now().date():
             raise ValidationError({'expiration_date': ['Datum expirace nemůže být v minulosti.']})
+        super().save(*args, **kwargs)
+
+
+class ProductSupplier(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, null=True, blank=True)
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, null=True, blank=True)
+
+    class Meta:
+        index_together = (('product',),)
+
+    def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
 
@@ -95,6 +110,8 @@ class Order(models.Model):
         if self.delivery_date and self.delivery_date < timezone.now().date():
             raise ValidationError({'delivery_date': ['Datum dodání nemůže být v minulosti.']})
         super().save(*args, **kwargs)
+
+
 
 
 

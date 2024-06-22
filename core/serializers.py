@@ -1,6 +1,7 @@
+
 from rest_framework import serializers
 
-from .models import Table, TableHead, Product, Order, Supplier, Manufacturer
+from .models import Table, TableHead, Product, Order, Supplier, Manufacturer, ProductSupplier
 
 
 class TableSerializer(serializers.ModelSerializer):
@@ -15,9 +16,16 @@ class TableHeadSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ProductSupplierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductSupplier
+        fields = '__all__'
+
+
 class ProductSerializer(serializers.ModelSerializer):
     created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     updated_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    product_suppliers = ProductSupplierSerializer(many=True)
 
     class Meta:
         model = Product
@@ -29,6 +37,13 @@ class ProductSerializer(serializers.ModelSerializer):
                 }
             }
         }
+
+    def create(self, validated_data):
+        product_suppliers_data = validated_data.pop('product_suppliers', [])
+        product = Product.objects.create(**validated_data)
+        for product_suppliers_data in product_suppliers_data:
+            ProductSupplier.objects.create(product=product, **product_suppliers_data)
+        return product
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -65,3 +80,5 @@ class ManufacturerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Manufacturer
         fields = '__all__'
+
+
