@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from .models import Table, TableHead, Product, Order, Supplier, Manufacturer, ProductSupplier
+from .models import Table, TableHead, Product, Order, Supplier, Manufacturer, SupplierSet
 
 
 class TableSerializer(serializers.ModelSerializer):
@@ -16,16 +16,19 @@ class TableHeadSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProductSupplierSerializer(serializers.ModelSerializer):
+class SupplierSetSerializer(serializers.ModelSerializer):
+    supplier = serializers.PrimaryKeyRelatedField(queryset=Supplier.objects.all())
+    manufacturer = serializers.PrimaryKeyRelatedField(queryset=Manufacturer.objects.all())
+
     class Meta:
-        model = ProductSupplier
-        fields = ['name']
+        model = SupplierSet
+        fields = ['supplier', 'manufacturer']
 
 
 class ProductSerializer(serializers.ModelSerializer):
     created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     updated_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
-    product_suppliers = ProductSupplierSerializer(many=True)
+    supplier_set = SupplierSetSerializer(many=True)
 
     class Meta:
         model = Product
@@ -39,10 +42,12 @@ class ProductSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        product_suppliers_data = validated_data.pop('product_suppliers', [])
+        supplier_set_data = validated_data.pop('supplier_set', [])
         product = Product.objects.create(**validated_data)
-        for product_suppliers_data in product_suppliers_data:
-            ProductSupplier.objects.create(product=product, **product_suppliers_data)
+
+        for item in supplier_set_data:
+            SupplierSet.objects.create(product=product, **item)
+
         return product
 
 

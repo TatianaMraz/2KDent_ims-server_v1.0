@@ -73,9 +73,9 @@ class Product(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='created_by', null=True, blank=True)
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='updated_by', null=True, blank=True)
 
-    def product_suppliers(self):
-        product_suppliers = ProductSupplier.objects.filter(product=self)
-        return [{'name': product_supplier.name} for product_supplier in product_suppliers]
+    def supplier_sets(self):
+        supplier_sets = SupplierSet.objects.filter(product=self)
+        return [{'supplier': supplier_set.supplier, 'manufacturer': supplier_set.manufacturer} for supplier_set in supplier_sets]
 
     def save(self, *args, **kwargs):
         if self.expiration_date and self.expiration_date < timezone.now().date():
@@ -83,9 +83,10 @@ class Product(models.Model):
         super().save(*args, **kwargs)
 
 
-class ProductSupplier(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, blank=False, null=False)
+class SupplierSet(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='supplier_set')
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=True, null=True)
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         index_together = (('product',),)
