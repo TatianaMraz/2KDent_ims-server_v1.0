@@ -72,10 +72,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='created_by', null=True, blank=True)
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='updated_by', null=True, blank=True)
-
-    def product_suppliers(self):
-        product_suppliers = ProductSupplier.objects.filter(product=self)
-        return [{'name': product_supplier.name} for product_supplier in product_suppliers]
+    suppliers = models.ManyToManyField('Supplier', through='ProductSupplier', related_name='products')
 
     def save(self, *args, **kwargs):
         if self.expiration_date and self.expiration_date < timezone.now().date():
@@ -85,13 +82,10 @@ class Product(models.Model):
 
 class ProductSupplier(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, blank=False, null=False)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
-        index_together = (('product',),)
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        unique_together = ('product', 'supplier')
 
 
 class Order(models.Model):
@@ -109,3 +103,4 @@ class Order(models.Model):
         if self.delivery_date and self.delivery_date < timezone.now().date():
             raise ValidationError({'delivery_date': ['Datum dodání nemůže být v minulosti.']})
         super().save(*args, **kwargs)
+

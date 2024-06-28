@@ -36,20 +36,14 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['POST'])
     def add_product_supplier(self, request, pk=None):
-        if 'name' in request.data:
+        if 'supplier' in request.data:
             product = self.get_object()
-            name = request.data['name']
+            supplier_id = request.data['supplier']
 
-            product_supplier, created = ProductSupplier.objects.update_or_create(product=product, name=name)
-            serializer = ProductSupplierSerializer(product_supplier)
-            response = {
-                'message': 'položka vytvořena' if not created else 'položka upravena',
-                'result': serializer.data
-            }
-            return JsonResponse(response, status=status.HTTP_200_OK)
+            product.suppliers.add(supplier_id)
+            return Response({'message': 'Supplier added successfully.'}, status=status.HTTP_200_OK)
         else:
-            response = {'message': 'zadejte dodavatele položky'}
-            return JsonResponse(response, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': 'Supplier ID is required.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProductChoicesViewSet(viewsets.ViewSet):

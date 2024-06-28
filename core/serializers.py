@@ -17,15 +17,17 @@ class TableHeadSerializer(serializers.ModelSerializer):
 
 
 class ProductSupplierSerializer(serializers.ModelSerializer):
+    supplier = serializers.PrimaryKeyRelatedField(queryset=Supplier.objects.all())
+
     class Meta:
         model = ProductSupplier
-        fields = ['name']
+        fields = ['supplier']
 
 
 class ProductSerializer(serializers.ModelSerializer):
     created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     updated_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
-    product_suppliers = ProductSupplierSerializer(many=True)
+    suppliers = serializers.PrimaryKeyRelatedField(queryset=Supplier.objects.all(), many=True)
 
     class Meta:
         model = Product
@@ -39,10 +41,10 @@ class ProductSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        product_suppliers_data = validated_data.pop('product_suppliers', [])
+        suppliers_data = validated_data.pop('suppliers', [])
         product = Product.objects.create(**validated_data)
-        for product_suppliers_data in product_suppliers_data:
-            ProductSupplier.objects.create(product=product, **product_suppliers_data)
+        for supplier in suppliers_data:
+            ProductSupplier.objects.create(product=product, supplier=supplier)
         return product
 
 
@@ -80,5 +82,6 @@ class ManufacturerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Manufacturer
         fields = '__all__'
+
 
 
