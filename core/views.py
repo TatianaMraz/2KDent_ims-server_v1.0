@@ -2,13 +2,14 @@ from django.db.models import ProtectedError
 from django.http import JsonResponse
 from knox.auth import TokenAuthentication
 from rest_framework import viewsets, generics, status
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from core.forms import ProductForm
-from core.models import Table, TableHead, Product, Order, Supplier, Manufacturer
+from core.models import Table, TableHead, Product, Order, Supplier, Manufacturer, ProductSupplier
 from core.serializers import TableSerializer, TableHeadSerializer, ProductSerializer, OrderSerializer, \
-    SupplierSerializer, ManufacturerSerializer
+    SupplierSerializer, ManufacturerSerializer, ProductSupplierSerializer
 
 
 class TableViewSet(viewsets.ModelViewSet):
@@ -33,6 +34,23 @@ class ProductViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         serializer.save(updated_by=self.request.user)
 
+    @action(detail=True, methods=['POST'])
+    def add_product_supplier(self, request, pk=None):
+        if 'name' in request.data:
+            product = self.get_object()
+            name = request.data['name']
+
+            product_supplier, created = ProductSupplier.objects.update_or_create(product=product, name=name)
+            serializer = ProductSupplierSerializer(product_supplier)
+            response = {
+                'message': 'položka vytvořena' if not created else 'položka upravena',
+                'result': serializer.data
+            }
+            return JsonResponse(response, status=status.HTTP_200_OK)
+        else:
+            response = {'message': 'zadejte dodavatele položky'}
+            return JsonResponse(response, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ProductChoicesViewSet(viewsets.ViewSet):
     def list(self, request):
@@ -46,6 +64,11 @@ class ProductChoicesViewSet(viewsets.ViewSet):
 class ProductUpdateAPIView(generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class ProductSupplierViewSet(viewsets.ModelViewSet):
+    queryset = ProductSupplier.objects.all()
+    serializer_class = ProductSupplierSerializer
 
 
 def product_image_view(request):
@@ -103,6 +126,7 @@ class SupplierViewSet(viewsets.ModelViewSet):
 class SupplierUpdateAPIView(generics.UpdateAPIView):
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
+
 
 class ManufacturerViewSet(viewsets.ModelViewSet):
     queryset = Manufacturer.objects.all()

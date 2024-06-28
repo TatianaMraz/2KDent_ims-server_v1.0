@@ -75,7 +75,7 @@ class Product(models.Model):
 
     def product_suppliers(self):
         product_suppliers = ProductSupplier.objects.filter(product=self)
-        return [{'supplier': product_supplier.supplier, 'manufacturer': product_supplier.manufacturer} for product_supplier in product_suppliers]
+        return [{'name': product_supplier.name} for product_supplier in product_suppliers]
 
     def save(self, *args, **kwargs):
         if self.expiration_date and self.expiration_date < timezone.now().date():
@@ -85,8 +85,7 @@ class Product(models.Model):
 
 class ProductSupplier(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, null=True, blank=True)
-    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=100, blank=False, null=False)
 
     class Meta:
         index_together = (('product',),)
@@ -110,8 +109,3 @@ class Order(models.Model):
         if self.delivery_date and self.delivery_date < timezone.now().date():
             raise ValidationError({'delivery_date': ['Datum dodání nemůže být v minulosti.']})
         super().save(*args, **kwargs)
-
-
-
-
-

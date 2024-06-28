@@ -19,7 +19,7 @@ class TableHeadSerializer(serializers.ModelSerializer):
 class ProductSupplierSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductSupplier
-        fields = '__all__'
+        fields = ['name']
 
 
 class ProductSerializer(serializers.ModelSerializer):
