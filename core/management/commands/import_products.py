@@ -19,7 +19,7 @@ class Command(BaseCommand):
                 'min_quantity': 10,
                 'expiration_date': '2025-12-31',
                 'product_type': 'Materiál',
-                'stock_number': 'Centrální sklad',
+                'stock_number': 'Lokace 1',
                 'note': 'High strength, suitable for crowns.',
                 'supplier_set': [
                     {"supplier": 1, "manufacturer": 2},
@@ -128,7 +128,7 @@ class Command(BaseCommand):
                 'min_quantity': 100,
                 'expiration_date': '2025-05-25',
                 'product_type': 'Materiál',
-                'stock_number': 'Centrální sklad',
+                'stock_number': 'Lokace 1',
                 'note': 'Waterproof, single-use.',
                 'supplier_set': [
                     {"supplier": 6, "manufacturer": 5}
@@ -152,7 +152,7 @@ class Command(BaseCommand):
                 'min_quantity': 30,
                 'expiration_date': '2026-10-10',
                 'product_type': 'Materiál',
-                'stock_number': 'Centrální sklad',
+                'stock_number': 'Lokace 2',
                 'note': 'Grit for polishing teeth.',
                 'supplier_set': [
                     {"supplier": 10, "manufacturer": 9}
@@ -200,7 +200,7 @@ class Command(BaseCommand):
                 'min_quantity': 200,
                 'expiration_date': '2025-06-15',
                 'product_type': 'Materiál',
-                'stock_number': 'Centrální sklad',
+                'stock_number': 'Lokace 1',
                 'note': 'Absorbent, single-use.',
                 'supplier_set': [
                     {"supplier": 3, "manufacturer": 4}
@@ -224,7 +224,7 @@ class Command(BaseCommand):
                 'min_quantity': 2,
                 'expiration_date': '2031-04-04',
                 'product_type': 'Zařízení',
-                'stock_number': 'Centrální sklad',
+                'stock_number': 'Lokace 2',
                 'note': 'High-resolution imaging.',
                 'supplier_set': [
                     {"supplier": 7, "manufacturer": 8}
@@ -248,7 +248,7 @@ class Command(BaseCommand):
                 'min_quantity': 6,
                 'expiration_date': '2027-05-05',
                 'product_type': 'Nástroj',
-                'stock_number': 'Centrální sklad',
+                'stock_number': 'Lokace 2',
                 'note': 'Stainless steel, non-stick surface.',
                 'supplier_set': [
                     {"supplier": 11, "manufacturer": 12}
