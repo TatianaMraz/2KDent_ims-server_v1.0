@@ -1,9 +1,9 @@
 from django.core.management.base import BaseCommand
-from django.db import connection
+from django.db import connection, transaction
 from django.utils.dateparse import parse_date
 
 from accounts.models import CustomUser
-from core.models import Supplier, Product
+from core.models import Supplier, Product, Manufacturer, SupplierSet
 
 
 class Command(BaseCommand):
@@ -21,7 +21,10 @@ class Command(BaseCommand):
                 'product_type': 'Materiál',
                 'stock_number': 'Centrální sklad',
                 'note': 'High strength, suitable for crowns.',
-                'supplier_id': 5,
+                'supplier_set': [
+                    {"supplier": 1, "manufacturer": 2},
+                    {"supplier": 12, "manufacturer": 5}
+                ]
             },
             {
                 'name': 'Dental Mirror',
@@ -31,7 +34,9 @@ class Command(BaseCommand):
                 'product_type': 'Nástroj',
                 'stock_number': 'Centrální sklad',
                 'note': 'Anti-fog coating.',
-                'supplier_id': 12,
+                'supplier_set': [
+                    {"supplier": 3, "manufacturer": 4}
+                ]
             },
             {
                 'name': 'Composite Resin',
@@ -41,7 +46,9 @@ class Command(BaseCommand):
                 'product_type': 'Materiál',
                 'stock_number': 'Centrální sklad',
                 'note': 'Ideal for aesthetic restorations.',
-                'supplier_id': 3,
+                'supplier_set': [
+                    {"supplier": 5, "manufacturer": 6}
+                ]
             },
             {
                 'name': 'Dental Drill',
@@ -51,7 +58,9 @@ class Command(BaseCommand):
                 'product_type': 'Nástroj',
                 'stock_number': 'Centrální sklad',
                 'note': 'High-speed stainless steel drill.',
-                'supplier_id': 7,
+                'supplier_set': [
+                    {"supplier": 7, "manufacturer": 8}
+                ]
             },
             {
                 'name': 'Ultrasonic Scaler',
@@ -61,7 +70,9 @@ class Command(BaseCommand):
                 'product_type': 'Zařízení',
                 'stock_number': 'Centrální sklad',
                 'note': 'Efficient plaque and tartar removal.',
-                'supplier_id': 14,
+                'supplier_set': [
+                    {"supplier": 9, "manufacturer": 10}
+                ]
             },
             {
                 'name': 'Dental Forceps',
@@ -71,7 +82,9 @@ class Command(BaseCommand):
                 'product_type': 'Nástroj',
                 'stock_number': 'Centrální sklad',
                 'note': 'Ergonomic handle design.',
-                'supplier_id': 1,
+                'supplier_set': [
+                    {"supplier": 11, "manufacturer": 12}
+                ]
             },
             {
                 'name': 'Dental Floss',
@@ -81,7 +94,9 @@ class Command(BaseCommand):
                 'product_type': 'Materiál',
                 'stock_number': 'Centrální sklad',
                 'note': 'Mint flavored for fresh breath.',
-                'supplier_id': 9,
+                'supplier_set': [
+                    {"supplier": 13, "manufacturer": 14}
+                ]
             },
             {
                 'name': 'Amalgam Capsule',
@@ -91,7 +106,9 @@ class Command(BaseCommand):
                 'product_type': 'Materiál',
                 'stock_number': 'Centrální sklad',
                 'note': 'Long-lasting, mercury alloy.',
-                'supplier_id': 8,
+                'supplier_set': [
+                    {"supplier": 2, "manufacturer": 1}
+                ]
             },
             {
                 'name': 'LED Curing Light',
@@ -101,7 +118,9 @@ class Command(BaseCommand):
                 'product_type': 'Zařízení',
                 'stock_number': 'Centrální sklad',
                 'note': 'Wireless, fast curing.',
-                'supplier_id': 4,
+                'supplier_set': [
+                    {"supplier": 4, "manufacturer": 3}
+                ]
             },
             {
                 'name': 'Dental Bib',
@@ -111,7 +130,9 @@ class Command(BaseCommand):
                 'product_type': 'Materiál',
                 'stock_number': 'Centrální sklad',
                 'note': 'Waterproof, single-use.',
-                'supplier_id': 11,
+                'supplier_set': [
+                    {"supplier": 6, "manufacturer": 5}
+                ]
             },
             {
                 'name': 'Impression Tray',
@@ -121,7 +142,9 @@ class Command(BaseCommand):
                 'product_type': 'Nástroj',
                 'stock_number': 'Centrální sklad',
                 'note': 'Adjustable, reusable.',
-                'supplier_id': 13,
+                'supplier_set': [
+                    {"supplier": 8, "manufacturer": 7}
+                ]
             },
             {
                 'name': 'Prophy Paste',
@@ -131,7 +154,9 @@ class Command(BaseCommand):
                 'product_type': 'Materiál',
                 'stock_number': 'Centrální sklad',
                 'note': 'Grit for polishing teeth.',
-                'supplier_id': 2,
+                'supplier_set': [
+                    {"supplier": 10, "manufacturer": 9}
+                ]
             },
             {
                 'name': 'Root Canal File',
@@ -141,7 +166,9 @@ class Command(BaseCommand):
                 'product_type': 'Nástroj',
                 'stock_number': 'Centrální sklad',
                 'note': 'Flexible, stainless steel.',
-                'supplier_id': 15,
+                'supplier_set': [
+                    {"supplier": 12, "manufacturer": 11}
+                ]
             },
             {
                 'name': 'Dental Handpiece',
@@ -151,7 +178,9 @@ class Command(BaseCommand):
                 'product_type': 'Zařízení',
                 'stock_number': 'Centrální sklad',
                 'note': 'High-torque, lightweight.',
-                'supplier_id': 6,
+                'supplier_set': [
+                    {"supplier": 14, "manufacturer": 13}
+                ]
             },
             {
                 'name': 'Orthodontic Bracket',
@@ -161,7 +190,9 @@ class Command(BaseCommand):
                 'product_type': 'Materiál',
                 'stock_number': 'Centrální sklad',
                 'note': 'Stainless steel, strong bond.',
-                'supplier_id': 16,
+                'supplier_set': [
+                    {"supplier": 1, "manufacturer": 2}
+                ]
             },
             {
                 'name': 'Dental Tray Paper',
@@ -171,7 +202,9 @@ class Command(BaseCommand):
                 'product_type': 'Materiál',
                 'stock_number': 'Centrální sklad',
                 'note': 'Absorbent, single-use.',
-                'supplier_id': 10,
+                'supplier_set': [
+                    {"supplier": 3, "manufacturer": 4}
+                ]
             },
             {
                 'name': 'Disposable Syringe',
@@ -181,7 +214,9 @@ class Command(BaseCommand):
                 'product_type': 'Materiál',
                 'stock_number': 'Centrální sklad',
                 'note': 'Sterile, single-use.',
-                'supplier_id': 5,
+                'supplier_set': [
+                    {"supplier": 5, "manufacturer": 6}
+                ]
             },
             {
                 'name': 'Dental X-ray Sensor',
@@ -191,7 +226,9 @@ class Command(BaseCommand):
                 'product_type': 'Zařízení',
                 'stock_number': 'Centrální sklad',
                 'note': 'High-resolution imaging.',
-                'supplier_id': 8,
+                'supplier_set': [
+                    {"supplier": 7, "manufacturer": 8}
+                ]
             },
             {
                 'name': 'Dental Articulator',
@@ -201,7 +238,9 @@ class Command(BaseCommand):
                 'product_type': 'Zařízení',
                 'stock_number': 'Centrální sklad',
                 'note': 'Adjustable, accurate simulations.',
-                'supplier_id': 12,
+                'supplier_set': [
+                    {"supplier": 9, "manufacturer": 10}
+                ]
             },
             {
                 'name': 'Dental Spatula',
@@ -211,29 +250,44 @@ class Command(BaseCommand):
                 'product_type': 'Nástroj',
                 'stock_number': 'Centrální sklad',
                 'note': 'Stainless steel, non-stick surface.',
-                'supplier_id': 14,
-            },
+                'supplier_set': [
+                    {"supplier": 11, "manufacturer": 12}
+                ]
+            }
         ]
 
-
-                # Delete all rows from the Product table
+        # Delete all rows from the Product table
         Product.objects.all().delete()
 
         # Reset autoincrement to start with id 1
         cursor = connection.cursor()
         cursor.execute("DELETE FROM sqlite_sequence WHERE name='core_product';")
 
-        for data in product_data:
-            # Parse expiration_date string into a date object
-            expiration_date_str = data.pop('expiration_date')
-            expiration_date = parse_date(expiration_date_str)
+        with transaction.atomic():
+            # Delete all rows from the Product table
+            Product.objects.all().delete()
 
-            supplier = Supplier.objects.get(pk=data.pop('supplier_id'))
-            data['supplier'] = supplier
-            data['expiration_date'] = expiration_date
-            data['created_by'] = default_user
-            product = Product(**data)
-            product.save()
+            for data in product_data:
+                # Parse expiration_date string into a date object
+                expiration_date_str = data.pop('expiration_date')
+                expiration_date = parse_date(expiration_date_str)
+
+                # Extract supplier_set from data and remove from data dictionary
+                supplier_set_data = data.pop('supplier_set', [])
+
+                # Create product instance
+                product = Product(**data, expiration_date=expiration_date, created_by=default_user)
+                product.save()
+
+                # Create SupplierSet instances
+                for supplier_data in supplier_set_data:
+                    supplier_id = supplier_data.get('supplier')
+                    manufacturer_id = supplier_data.get('manufacturer')
+
+                    supplier = Supplier.objects.get(pk=supplier_id)
+                    manufacturer = Manufacturer.objects.get(pk=manufacturer_id)
+
+                    SupplierSet.objects.create(product=product, supplier=supplier, manufacturer=manufacturer)
 
         self.stdout.write(self.style.SUCCESS('Products imported successfully.'))
 
