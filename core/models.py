@@ -85,8 +85,8 @@ class Product(models.Model):
 
 class SupplierSet(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='supplier_set')
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=True, null=True)
-    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, blank=True, null=True)
+    supplier = models.ForeignKey(Supplier, on_delete=models.PROTECT, blank=True, null=True)
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.PROTECT, blank=True, null=True)
 
     class Meta:
         index_together = (('product',),)
