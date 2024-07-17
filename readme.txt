@@ -111,6 +111,8 @@ base URL: https://2K-Dent.ims.cz/
             git add .
             git commit -m""
             git push heroku master
+    - if want to deploy from different branch than master:
+        git push heroku branch-name:master
 
 TO DO:
 
