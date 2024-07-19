@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from .models import Table, TableHead, Product, Order, Supplier, Manufacturer, SupplierSet
+from .models import Table, TableHead, Product, Order, Supplier, Manufacturer, SupplierSet, Store, Stock
 
 
 class TableSerializer(serializers.ModelSerializer):
@@ -16,6 +16,12 @@ class TableHeadSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class StoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Store
+        fields = '__all__'
+
+
 class SupplierSetSerializer(serializers.ModelSerializer):
     supplier = serializers.PrimaryKeyRelatedField(queryset=Supplier.objects.all())
     manufacturer = serializers.PrimaryKeyRelatedField(queryset=Manufacturer.objects.all())
@@ -25,10 +31,19 @@ class SupplierSetSerializer(serializers.ModelSerializer):
         fields = ['supplier', 'manufacturer']
 
 
+class StockSerializer(serializers.ModelSerializer):
+    store = serializers.PrimaryKeyRelatedField(queryset=Store.objects.all())
+
+    class Meta:
+        model = Stock
+        fields = ['store', 'quantity']
+
+
 class ProductSerializer(serializers.ModelSerializer):
     created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     updated_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     supplier_set = SupplierSetSerializer(many=True)
+    stock = StockSerializer(many=True)
 
     class Meta:
         model = Product
@@ -43,10 +58,14 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         supplier_set_data = validated_data.pop('supplier_set', [])
+        stock_data = validated_data.pop('stock', [])
         product = Product.objects.create(**validated_data)
 
         for item in supplier_set_data:
             SupplierSet.objects.create(product=product, **item)
+
+        for item in stock_data:
+            Stock.objects.create(product=product, **item)
 
         return product
 

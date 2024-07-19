@@ -31,8 +31,8 @@ SECRET_KEY = 'django-insecure-b!%ga3a9u1g)t%r-w)e=#5yn_7ft(4-3gz*g=ld5sb=!_e4a87
 DEBUG = True
 
 # ALLOWED_HOSTS = ['ims-2kdent-d48065238ade.herokuapp.com']
-ALLOWED_HOSTS = ['npgroup-demo-b6684a3e9dff.herokuapp.com']
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['npgroup-demo-b6684a3e9dff.herokuapp.com']
+ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 

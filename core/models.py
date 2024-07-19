@@ -29,6 +29,10 @@ class TableHead(models.Model):
     contact = models.CharField(max_length=100, default='Kontakt')
 
 
+class Store(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+
 class Supplier(models.Model):
     company = models.CharField(max_length=100, unique=True)
     address = models.CharField(max_length=255)
@@ -77,6 +81,10 @@ class Product(models.Model):
         supplier_sets = SupplierSet.objects.filter(product=self)
         return [{'supplier': supplier_set.supplier, 'manufacturer': supplier_set.manufacturer} for supplier_set in supplier_sets]
 
+    def stocks(self):
+        stocks = Stock.objects.filter(product=self)
+        return [{'stock': stock.store, 'quantity': stock.quantity} for stock in stocks]
+
     def save(self, *args, **kwargs):
         if self.expiration_date and self.expiration_date < timezone.now().date():
             raise ValidationError({'expiration_date': ['Datum expirace nemůže být v minulosti.']})
@@ -93,6 +101,15 @@ class SupplierSet(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+
+
+class Stock(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='stock')
+    store = models.ForeignKey(Store, on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        index_together = (('product',),)
 
 
 class Order(models.Model):

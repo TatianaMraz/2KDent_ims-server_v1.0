@@ -6,9 +6,9 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from core.forms import ProductForm
-from core.models import Table, TableHead, Product, Order, Supplier, Manufacturer
+from core.models import Table, TableHead, Product, Order, Supplier, Manufacturer, Store
 from core.serializers import TableSerializer, TableHeadSerializer, ProductSerializer, OrderSerializer, \
-    SupplierSerializer, ManufacturerSerializer
+    SupplierSerializer, ManufacturerSerializer, StoreSerializer
 
 
 class TableViewSet(viewsets.ModelViewSet):
@@ -104,6 +104,10 @@ class SupplierUpdateAPIView(generics.UpdateAPIView):
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
 
+
+class StoreViewSet(viewsets.ModelViewSet):
+    queryset = Store.objects.all()
+    serializer_class = StoreSerializer
 
 class ManufacturerViewSet(viewsets.ModelViewSet):
     queryset = Manufacturer.objects.all()
