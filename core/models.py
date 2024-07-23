@@ -19,7 +19,6 @@ class TableHead(models.Model):
     delivery_date = models.CharField(max_length=100, default='Datum dodání')
     is_delivered = models.CharField(max_length=100, default='Dodáno')
     order_number = models.CharField(max_length=100, default='Číslo obj.')
-    stock_number = models.CharField(max_length=100, default='Číslo skladu')
     note = models.CharField(max_length=100, default='Poznámka')
     company = models.CharField(max_length=100, default='Firma')
     address = models.CharField(max_length=100, default='Adresa')
@@ -60,7 +59,6 @@ class Manufacturer(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    quantity = models.PositiveIntegerField(default=1)
     min_quantity = models.PositiveIntegerField(default=1)
     expiration_date = models.DateField(null=True, blank=True)
     PRODUCT_TYPE_CHOICES = [
@@ -69,7 +67,6 @@ class Product(models.Model):
         ('Zařízení', 'Zařízení'),
     ]
     product_type = models.CharField(max_length=20, choices=PRODUCT_TYPE_CHOICES, default='Materiál')
-    stock_number = models.CharField(max_length=100, default='Centrální sklad')
     image = models.ImageField(upload_to='product_files/', null=True, blank=True)
     note = models.TextField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

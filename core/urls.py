@@ -3,7 +3,7 @@ from rest_framework import routers
 
 from core.views import TableViewSet, TableHeadViewSet, ProductViewSet, ProductUpdateAPIView, ProductChoicesViewSet, \
     OrderViewSet, OrderUpdateAPIView, SupplierViewSet, SupplierUpdateAPIView, ManufacturerViewSet, \
-    ManufacturerUpdateAPIView
+    ManufacturerUpdateAPIView, StoreViewSet
 
 router = routers.DefaultRouter()
 router.register('tables', TableViewSet)
@@ -12,7 +12,7 @@ router.register('products', ProductViewSet)
 router.register('orders', OrderViewSet)
 router.register('suppliers', SupplierViewSet)
 router.register('manufacturers', ManufacturerViewSet)
-
+router.register('stores', StoreViewSet)
 
 
 urlpatterns = [

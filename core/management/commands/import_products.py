@@ -15,11 +15,9 @@ class Command(BaseCommand):
         product_data = [
             {
                 'name': 'Dental Cement',
-                'quantity': 100,
                 'min_quantity': 10,
                 'expiration_date': '2025-12-31',
                 'product_type': 'Materiál',
-                'stock_number': 'Lokace 1',
                 'note': 'High strength, suitable for crowns.',
                 'supplier_set': [
                     {"supplier": 1, "manufacturer": 2},
@@ -32,11 +30,9 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Dental Mirror',
-                'quantity': 1,
                 'min_quantity': 5,
                 'expiration_date': '2024-08-20',
                 'product_type': 'Nástroj',
-                'stock_number': 'Centrální sklad',
                 'note': 'Anti-fog coating.',
                 'supplier_set': [
                     {"supplier": 3, "manufacturer": 4}
@@ -48,11 +44,9 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Composite Resin',
-                'quantity': 200,
                 'min_quantity': 20,
                 'expiration_date': '2025-04-05',
                 'product_type': 'Materiál',
-                'stock_number': 'Centrální sklad',
                 'note': 'Ideal for aesthetic restorations.',
                 'supplier_set': [
                     {"supplier": 5, "manufacturer": 6}
