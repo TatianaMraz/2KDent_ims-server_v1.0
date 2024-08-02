@@ -16,7 +16,7 @@ class Command(BaseCommand):
             {
                 'name': 'Dental Cement',
                 'min_quantity': 10,
-                'expiration_date': '2025-12-31',
+                'expiration_date': '2024-08-30',
                 'product_type': 'Materiál',
                 'note': 'High strength, suitable for crowns.',
                 'supplier_set': [
@@ -24,109 +24,131 @@ class Command(BaseCommand):
                     {"supplier": 12, "manufacturer": 5}
                 ],
                 'stock': [
-                    {"store": 1, "quantity": 2},
-                    {"store": 3, "quantity": 78},
+                    {"store": 1, "quantity": 5},
+                    {"store": 2, "quantity": 0},
+                    {"store": 3, "quantity": 2},
                 ]
             },
             {
                 'name': 'Dental Mirror',
                 'min_quantity': 5,
-                'expiration_date': '2024-08-20',
+                'expiration_date': '2024-07-20',
                 'product_type': 'Nástroj',
                 'note': 'Anti-fog coating.',
                 'supplier_set': [
                     {"supplier": 3, "manufacturer": 4}
                 ],
                 'stock': [
-                    {"store": 3, "quantity": 27},
-                    {"store": 2, "quantity": 8},
+                    {"store": 1, "quantity": 3},
+                    {"store": 2, "quantity": 1},
+                    {"store": 3, "quantity": 0},
                 ]
             },
             {
                 'name': 'Composite Resin',
                 'min_quantity': 20,
-                'expiration_date': '2025-04-05',
+                'expiration_date': '2024-07-30',
                 'product_type': 'Materiál',
                 'note': 'Ideal for aesthetic restorations.',
                 'supplier_set': [
                     {"supplier": 5, "manufacturer": 6}
                 ],
                 'stock': [
-                    {"store": 1, "quantity": 89},
+                    {"store": 1, "quantity": 70},
+                    {"store": 2, "quantity": 0},
+                    {"store": 3, "quantity": 0},
                 ]
             },
-            # {
-            #     'name': 'Dental Drill',
-            #     'quantity': 30,
-            #     'min_quantity': 3,
-            #     'expiration_date': '2027-03-10',
-            #     'product_type': 'Nástroj',
-            #     'stock_number': 'Centrální sklad',
-            #     'note': 'High-speed stainless steel drill.',
-            #     'supplier_set': [
-            #         {"supplier": 7, "manufacturer": 8}
-            #     ]
-            # },
-            # {
-            #     'name': 'Ultrasonic Scaler',
-            #     'quantity': 10,
-            #     'min_quantity': 2,
-            #     'expiration_date': '2029-09-20',
-            #     'product_type': 'Zařízení',
-            #     'stock_number': 'Centrální sklad',
-            #     'note': 'Efficient plaque and tartar removal.',
-            #     'supplier_set': [
-            #         {"supplier": 9, "manufacturer": 10}
-            #     ]
-            # },
-            # {
-            #     'name': 'Dental Forceps',
-            #     'quantity': 40,
-            #     'min_quantity': 4,
-            #     'expiration_date': '2030-01-01',
-            #     'product_type': 'Nástroj',
-            #     'stock_number': 'Centrální sklad',
-            #     'note': 'Ergonomic handle design.',
-            #     'supplier_set': [
-            #         {"supplier": 11, "manufacturer": 12}
-            #     ]
-            # },
-            # {
-            #     'name': 'Dental Floss',
-            #     'quantity': 500,
-            #     'min_quantity': 50,
-            #     'expiration_date': '2026-08-08',
-            #     'product_type': 'Materiál',
-            #     'stock_number': 'Centrální sklad',
-            #     'note': 'Mint flavored for fresh breath.',
-            #     'supplier_set': [
-            #         {"supplier": 13, "manufacturer": 14}
-            #     ]
-            # },
-            # {
-            #     'name': 'Amalgam Capsule',
-            #     'quantity': 150,
-            #     'min_quantity': 15,
-            #     'expiration_date': '2025-07-22',
-            #     'product_type': 'Materiál',
-            #     'stock_number': 'Centrální sklad',
-            #     'note': 'Long-lasting, mercury alloy.',
-            #     'supplier_set': [
-            #         {"supplier": 2, "manufacturer": 1}
-            #     ]
-            # },
-            # {
-            #     'name': 'LED Curing Light',
-            #     'quantity': 20,
-            #     'min_quantity': 2,
-            #     'expiration_date': '2031-02-18',
-            #     'product_type': 'Zařízení',
-            #     'stock_number': 'Centrální sklad',
-            #     'note': 'Wireless, fast curing.',
-            #     'supplier_set': [
-            #         {"supplier": 4, "manufacturer": 3}
-            #     ]
-            # },
+            {
+                'name': 'Dental Drill',
+                'min_quantity': 15,
+                'expiration_date': '2027-03-10',
+                'product_type': 'Nástroj',
+                'note': 'High-speed stainless steel drill.',
+                'supplier_set': [
+                    {"supplier": 7, "manufacturer": 8}
+                ],
+                'stock': [
+                    {"store": 1, "quantity": 4},
+                    {"store": 2, "quantity": 15},
+                    {"store": 3, "quantity": 0},
+                ]
+            },
+            {
+                'name': 'Ultrasonic Scaler',
+                'min_quantity': 2,
+                'expiration_date': '2029-09-20',
+                'product_type': 'Zařízení',
+                'note': 'Efficient plaque and tartar removal.',
+                'supplier_set': [
+                    {"supplier": 9, "manufacturer": 10}
+                ],
+                'stock': [
+                    {"store": 1, "quantity": 0},
+                    {"store": 2, "quantity": 35},
+                    {"store": 3, "quantity": 15}
+                ]
+            },
+            {
+                'name': 'Dental Forceps',
+                'min_quantity': 4,
+                'expiration_date': '2030-01-01',
+                'product_type': 'Nástroj',
+                'note': 'Ergonomic handle design.',
+                'supplier_set': [
+                    {"supplier": 11, "manufacturer": 12}
+                ],
+                'stock': [
+                    {"store": 1, "quantity": 50},
+                    {"store": 2, "quantity": 0},
+                    {"store": 3, "quantity": 30}
+                ]
+            },
+            {
+                'name': 'Dental Floss',
+                'min_quantity': 50,
+                'expiration_date': '2026-08-08',
+                'product_type': 'Materiál',
+                'note': 'Mint flavored for fresh breath.',
+                'supplier_set': [
+                    {"supplier": 13, "manufacturer": 14}
+                ],
+                'stock': [
+                    {"store": 1, "quantity": 0},
+                    {"store": 2, "quantity": 8},
+                    {"store": 3, "quantity": 70}
+                ]
+            },
+            {
+                'name': 'Amalgam Capsule',
+                'min_quantity': 15,
+                'expiration_date': '2025-07-22',
+                'product_type': 'Materiál',
+                'note': 'Long-lasting, mercury alloy.',
+                'supplier_set': [
+                    {"supplier": 2, "manufacturer": 1}
+                ],
+                'stock': [
+                    {"store": 1, "quantity": 60},
+                    {"store": 2, "quantity": 0},
+                    {"store": 3, "quantity": 90}
+                ]
+            },
+            {
+                'name': 'LED Curing Light',
+                'min_quantity': 30,
+                'expiration_date': '2031-02-18',
+                'product_type': 'Zařízení',
+                'note': 'Wireless, fast curing.',
+                'supplier_set': [
+                    {"supplier": 4, "manufacturer": 3}
+                ],
+                'stock': [
+                    {"store": 1, "quantity": 21},
+                    {"store": 2, "quantity": 16},
+                    {"store": 3, "quantity": 0},
+                ]
+            },
             # {
             #     'name': 'Dental Bib',
             #     'quantity': 1000,
