@@ -6,6 +6,7 @@ Branch description: 19.07.2024
 Base app
 + product with supplier set of supplier and manufacturer working
 + product transfer between stores on progress
++ Docker configuration
 
 __________________________________________________________________________
 - set up new project

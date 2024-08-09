@@ -32,6 +32,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['ims-2kdent-d48065238ade.herokuapp.com']
 # ALLOWED_HOSTS = ['npgroup-demo-b6684a3e9dff.herokuapp.com']
+# ALLOWED_HOSTS = ['localhost:8080']
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -142,6 +143,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
+    "http://localhost:8080",
     "https://ims-2kdent.web.app",
     "https://npgroup-demo.web.app"
 ]
